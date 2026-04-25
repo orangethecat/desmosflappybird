@@ -1,0 +1,225 @@
+/* --- YENİ KONSEPT: Flappy Bird X Matematik --- */
+:root {
+    --flappy-sky: #4EC0CA;      /* Klasik gökyüzü mavisi */
+    --flappy-pipe: #73BF2E;     /* Boru yeşili */
+    --flappy-bird: #F3C72B;     /* Kuş sarısı */
+    --math-bg: #F8F9FA;         /* Temiz, okunabilir kağıt beyazı */
+    --math-text: #2B2D42;       /* Göz yormayan koyu lacivert/siyah */
+    --math-border: #E2E8F0;     /* İnce çerçeve rengi */
+    --accent-red: #E65F38;      /* Dikkat çekici küçük detaylar için */
+}
+
+/* Genel Ayarlar */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: var(--math-bg);
+    color: var(--math-text);
+    margin: 0;
+    padding: 0;
+    line-height: 1.6;
+}
+
+.container {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+/* Hero Section (Karşılama) - Flappy Gökyüzü Teması */
+.hero {
+    background-color: var(--flappy-sky);
+    padding: 80px 0;
+    text-align: center;
+    border-bottom: 12px solid var(--flappy-pipe); /* Alt tarafta boru hissi */
+    color: white;
+}
+
+.tagline {
+    font-weight: bold;
+    color: var(--flappy-bird);
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    margin-bottom: 10px;
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.2);
+}
+
+.hero h1 {
+    font-size: 2.8rem;
+    margin: 0 0 20px 0;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+}
+
+.subtitle {
+    font-size: 1.2rem;
+    margin-bottom: 40px;
+    opacity: 0.9;
+}
+
+.btn {
+    display: inline-block;
+    background-color: var(--flappy-bird);
+    color: var(--math-text);
+    padding: 15px 30px;
+    text-decoration: none;
+    border-radius: 8px;
+    font-weight: 900;
+    font-size: 1.1rem;
+    box-shadow: 0 4px 0 #D1A81B; /* Retro 8-bit buton hissi */
+    transition: transform 0.1s, box-shadow 0.1s;
+}
+
+.btn:hover {
+    transform: translateY(2px);
+    box-shadow: 0 2px 0 #D1A81B;
+}
+
+/* Geliştirici Günlüğü - Akademik ve Temiz Görünüm */
+#devlog {
+    padding: 60px 20px;
+}
+
+#devlog h2 {
+    text-align: center;
+    font-size: 2.2rem;
+    margin-bottom: 40px;
+    color: var(--math-text);
+}
+
+.chat-link-box {
+    text-align: center;
+    background-color: white;
+    padding: 20px;
+    border-radius: 8px;
+    margin-bottom: 40px;
+    font-weight: bold;
+    border: 2px dashed var(--flappy-sky);
+}
+
+.chat-link {
+    color: var(--accent-red);
+    text-decoration: none;
+    font-weight: 900;
+}
+
+.chat-link:hover {
+    text-decoration: underline;
+}
+
+.rickroll-link {
+    text-align: center;
+    font-size: 2.2rem;
+    margin-bottom: 40px;
+    margin-left: 565px;
+    color: var(--math-text);
+}
+
+.log-entry {
+    background-color: white;
+    padding: 30px;
+    border-radius: 12px;
+    margin-bottom: 40px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+    border: 1px solid var(--math-border);
+}
+
+.log-entry h3 {
+    margin-top: 0;
+    color: var(--flappy-pipe);
+    border-bottom: 2px solid var(--math-border);
+    padding-bottom: 10px;
+    font-size: 1.5rem;
+}
+
+.prompt-box {
+    background-color: #F0F9FA; /* Çok açık mavi */
+    padding: 20px;
+    border-left: 5px solid var(--flappy-sky);
+    border-radius: 0 8px 8px 0;
+    margin: 20px 0;
+    font-style: italic;
+    color: var(--math-text);
+}
+
+.video-container {
+    background-color: var(--math-text);
+    color: white;
+    text-align: center;
+    padding: 40px;
+    border-radius: 8px;
+    margin-top: 20px;
+}
+
+/* Footer */
+footer {
+    background-color: var(--math-text);
+    color: white;
+    text-align: center;
+    padding: 30px 0;
+    margin-top: 40px;
+    border-top: 6px solid var(--accent-red);
+}
+
+.easter-egg {
+    font-size: 1rem;
+    font-family: monospace;
+    opacity: 0.7;
+    margin: 0;
+}
+
+/* Desmos Embed Ayarları */
+.desmos-embed-container {
+    margin: 30px 0;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+}
+
+.desmos-embed-container iframe {
+    display: block; /* Alt kısımdaki boşluğu siler */
+}
+
+/* Geliştirici Günlüğü Video Ayarları */
+.dev-video {
+    width: 100%;
+    max-width: 800px;
+    border-radius: 8px;
+    margin-top: 15px;
+    border: 3px solid var(--light-green);
+    background-color: #000; /* Video yüklenirken arka plan siyah olsun */
+}
+/* Mobil Uyumluluk (Responsive Design) */
+@media screen and (max-width: 768px) {
+    /* Başlıkları ve metinleri küçült */
+    .hero h1 {
+        font-size: 1.8rem;
+    }
+    
+    .subtitle {
+        font-size: 1rem;
+    }
+
+    /* Boşlukları daraltarak ekrandan tasarruf et */
+    .hero {
+        padding: 40px 0;
+    }
+
+    #devlog, #prompt-engineering {
+        padding: 30px 10px;
+    }
+
+    .log-entry {
+        padding: 20px 15px;
+    }
+
+    /* Desmos oyununun yüksekliğini telefon ekranına sığacak kadar kısalt */
+    .desmos-embed-container iframe {
+        height: 400px !important;
+    }
+
+    /* Butonu telefonda tam genişlik yapıp tıklamayı kolaylaştır */
+    .btn {
+        display: block;
+        width: 80%;
+        margin: 0 auto;
+    }
+}
