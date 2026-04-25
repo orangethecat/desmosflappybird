@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Desmos Flappy Bird | Matematik Projesi</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <header class="hero">
+        <div class="container">
+            <p class="tagline">Bir Matematik Projesi</p>
+            <h1>Flappy Bird Oyununu Nasıl Baştan GEMINI ile Yarattım?</h1>
+            <p class="subtitle">Saf matematik, modülo aritmetiği ve parçalı fonksiyonlar kullanarak Desmos üzerinde çalışan bir fizik motoru ve oyun tasarımı.</p>
+            
+            <div class="desmos-embed-container">
+                <iframe src="https://www.desmos.com/calculator/sc4u00u696?embed" width="100%" height="600" style="border: 1px solid #ccc" frameborder=0></iframe>
+            </div>
+
+            <a href="#devlog" class="btn">Geliştirici Günlüğüne Git</a>
+        </div>
+    </header>
+
+    <section id="devlog" class="container">
+        <h2>Geliştirici Günlüğü & Yapım Aşamaları</h2>
+        <p class="chat-link-box">
+            Tüm fikir fırtınasını ve kodlama sürecini incelemek için: 
+            <a href="https://gemini.google.com/share/278f6f5e4a3e" target="_blank" class="chat-link">Gemini ile Yazışma Linkim</a>
+        </p>
+
+        <article class="log-entry">
+            <h3>Aşama 1: Sonsuz Arka Plan ve Modülo Aritmetiği</h3>
+            <div class="prompt-box">
+                <strong>Verilebilecek Prompt:</strong> "Flappy bird arka planı için Desmos'ta bir görseli sürekli sola doğru kaydırıp ekranın sonuna gelince başa sarmasını (sonsuz döngü) nasıl sağlayabilirim?"
+            </div>
+            <div class="video-container">
+                <p><em>Arka Plan Testi: Arka Planın Sonsuz Akışını Sağlama</em></p>
+                <div class="video-container">
+                <iframe src="https://drive.google.com/file/d/1V3jloFlH7EOaaGvulPc4POpmh5FgNoAe/preview" width="100%" height="450" class="dev-video" frameborder="0" allow="autoplay" allowfullscreen></iframe>
+            </div>
+            </div>
+            <p><strong>Süreç ve Çözüm:</strong> Başlangıçta arka planı kaydırmak basitti, ancak resmin ekrandan çıkıp tekrar girmesi arasındaki boşluğu çözmek gerekiyordu. Modülo (mod) fonksiyonunu kullanarak döngüyü sıfırladık ve iki farklı görseli uç uca ekleyerek kesintisiz bir akış elde ettik.</p>
+        </article>
+
+        <article class="log-entry">
+            <h3>Aşama 2: Karakter Konumu ve Hitbox Ötelemesi</h3>
+            <div class="prompt-box">
+                <strong>Verilebilecek Prompt:</strong> "Kuş ekranın tam ortasında durduğu için borulara tepki vermek için vakit kalmıyor. Kuşu ekranın sol tarafına aldığımda çarpışma algılayıcısını nasıl öteleyebilirim?"
+            </div>
+            <p><strong>Karşılaşılan Zorluk:</strong> Kuşun merkezini değiştirdiğimde boru konumlarının da ona göre güncellenmesi gerekiyordu. Fonksiyonun tanım kümesini X ekseninde öteleyerek bu sorunu çözdük.</p>
+            
+        </article>
+
+        <article class="log-entry">
+            <h3>Aşama 3: Trigonometrik Dalgalar ve Bölüm Tasarımı</h3>
+            <div class="prompt-box">
+                <strong>Verilebilecek Prompt:</strong> "Ekranda 3 farklı boru sütunu yaratmak ve içinden geçilecek yükseklikleri rastgele değiştirmek için Sinüs (sin) fonksiyonunu nasıl kullanabilirim?"
+            </div>
+            <p><strong>Karşılaşılan Zorluk:</strong> Kırmızı sinüs dalgası ekranda kalmıştı ve kuşun konumunu değiştirdiğimiz için modülo döngüsü kuşa ulaşamadan sıfırlanıyordu. Grafiği gizleyerek ve döngü sınırlarını uzatarak çözdük.</p>
+            <div class="video-container">
+                <p><em>Hata Ayıklama (Debugging): Sinüs dalgasının görünür kalması ve boruların erken sıfırlanması sorunu.</em></p>
+                <div class="video-container">
+                <p><em>Hata Ayıklama (Debugging): Sinüs dalgasının görünür kalması ve boruların erken sıfırlanması sorunu.</em></p>
+                <iframe src="https://drive.google.com/file/d/15ykPiwPiTGrmwCgF_lkoF_RHPABOLzAW/preview" width="100%" height="450" class="dev-video" frameborder="0" allow="autoplay" allowfullscreen></iframe>
+            </div>
+            </div>
+        </article>
+        <article class="log-entry">
+            <h3>Aşama 4: Fizik Motoru ve Terminal Hız (Terminal Velocity)</h3>
+            <div class="prompt-box">
+                <strong>Verilebilecek Prompt:</strong> "Kuşun sürekli hızlanarak meteor gibi düşmesini engellemek için, gerçek dünyadaki hava sürtünmesini (limit hız) simüle edecek bir matematiksel sınırı nasıl kurgularım?"
+            </div>
+            <p><strong>Süreç ve Çözüm:</strong> Sadece yerçekimi ivmesini hızdan çıkarmak, kuşun sonsuza kadar hızlanmasına neden oluyordu. Düşüş hızını kontrol altına almak için Desmos'un <code>max()</code> fonksiyonunu kullandık. Böylece kuşun düşüş hızı belirli bir negatif değerde (-0.6 gibi) sabitlendi ve oyunun fiziksel kontrol hissi (game feel) kusursuzlaştı.</p>
+        </article>
+
+        <article class="log-entry">
+            <h3>Aşama 5: Mantıksal Kapılar ile Çarpışma Algılama (Hitbox)</h3>
+            <div class="prompt-box">
+                <strong>Verilebilecek Prompt:</strong> "Üç farklı boru için çarpışma algılama kodunu (Game Over sistemi) yazarken karakter sınırına takıldım. Bu 'Spagetti Kodu' temizlemek için mutlak değer ve boolean mantığını nasıl kullanabilirim?
+            </div>
+            <div class="video-container">
+                <p><em>Oyun Dengeleme (Game Balancing): Hitbox'ların çok dar olması sebebiyle oyunun 'kazanılamaz' hale geldiği test aşaması.</em></p>
+                <div class="video-container">
+                <p><em>Oyun Dengeleme (Game Balancing): Hitbox'ların çok dar olması sebebiyle oyunun 'kazanılamaz' hale geldiği test aşaması.</em></p>
+                <iframe src="https://drive.google.com/file/d/15Ks8Xk7PShl-ry8cz544mFwwQJ-agXu0/preview" width="100%" height="450" class="dev-video" frameborder="0" allow="autoplay" allowfullscreen></iframe>
+            </div>
+            </div>
+            <p><strong>Süreç ve Çözüm:</strong> İç içe geçmiş karmaşık eşitsizlikler yazmak yerine, parçalı fonksiyonları (piecewise functions) bir <strong>AND (VE)</strong> mantıksal kapısı gibi kullandık. Çarpma işlemi ($1 \times 1 = 1$) ve mutlak değer ($|x|$) eşitsizlikleri ile kod satırlarını modüler hale getirip oyunun donma sistemini optimize ettik.</p>
+        </article>
+
+        <article class="log-entry">
+            <h3>Aşama 6: Platform Kısıtlamaları ve UX Çözümleri</h3>
+            <div class="prompt-box">
+                <strong>Verilebilecek Prompt:</strong> "Oyun donduğunda oyuncunun yeniden başlaması için ekrandaki görsellere tıklama (Click Action) mantığını nasıl entegre ederim?"
+            </div>
+            <p><strong>Süreç ve Çözüm:</strong> Desmos doğrudan bir oyun motoru olmadığı için klavye dinleme (event listener) özelliği kısıtlıydı. Bu sorunu aşmak için, oyun arka planına veya kuş görseline tıklanıldığında tüm konum ve hız değişkenlerini ($h, v, b$) sıfıra eşitleyen bir Reset fonksiyonu tanımladık.</p>
+        </article>
+
+        <article class="log-entry">
+            <h3>Aşama 7: Algoritmik Skor Sayacı</h3>
+            <div class="prompt-box">
+                <strong>Verilebilecek Prompt:</strong> "Arka planın kayma mesafesini baz alarak, boruların arasından geçtikçe artan bir skor sayacını matematiksel olarak nasıl yazarım?"
+            </div>
+            <div class="video-container">
+                <p><em>Algoritma Testi: Dinamik etiket ile ekrana yazdırılan skorun, kuş boruyu tamamen geçtiği anı (b=54) bekleme süreci.</em></p>
+                <div class="video-container">
+                <p><em>Algoritma Testi: Dinamik etiket ile ekrana yazdırılan skorun, kuş boruyu tamamen geçtiği anı (b=54) bekleme süreci.</em></p>
+                <iframe src="https://drive.google.com/file/d/1ZLiuboGDRoBeCmzpXCRbl76LIBranarB/preview" width="100%" height="450" class="dev-video" frameborder="0" allow="autoplay" allowfullscreen></iframe>
+            </div>
+            </div>
+            <p><strong>Süreç ve Çözüm:</strong> Karmaşık sayaç döngüleri kurmak yerine, oyunun doğasını kullandık. Arka planın kayma miktarını iki boru arasındaki mesafeye bölüp, sonucu <code>floor</code> (aşağı yuvarlama) fonksiyonu ile tam sayıya çevirdik. Elde ettiğimiz bu değeri Desmos'un dinamik etiket <code>${ }</code> özelliği ile doğrudan oyun ekranına yansıttık.</p>
+        </article>
+        <article class="log-entry">
+            <h3>🎮 Final Test: Oyunun Tamamlanmış Hali</h3>
+            <p>Tüm matematiksel denklemlerin, çarpışma algılayıcıların ve skor sisteminin bir araya geldiği son oynanış testi. Sayılarla ve fonksiyonlarla inşa ettiğimiz dünyada ilk uçuşumuz!</p>
+            <div class="video-container">
+                <div class="video-container">
+                <iframe src="https://drive.google.com/file/d/1LQ5IAA-gxzFNUxhIqjyrVXFXNiAiaB5V/preview" width="100%" height="450" class="dev-video" frameborder="0" allow="autoplay" allowfullscreen></iframe>
+            </div>
+            </div>
+        </article>
+
+    </section> <section id="prompt-engineering" class="container">
+        <h2>✨ Bonus: Bir Prompt Engineer Gözüyle Süreç Analizi</h2>
+        <div class="log-entry">
+            <p>Bir yapay zeka modeliyle karmaşık bir matematik/yazılım projesi yürütmek, doğru soruları sorma ve süreci yönetme sanatı olan <strong>Prompt Engineering (İstem Mühendisliği)</strong> becerisi gerektirir. İşte bu projenin arkasındaki iletişim stratejisinin analizi:</p>
+            
+            <ul>
+                <li style="margin-bottom: 15px;">
+                    <strong>1. Modüler Yaklaşım (Iterative Prompting):</strong> 
+                    En büyük başarı, "Bana Desmos'ta oyun yap" gibi genelgeçer bir komut vermek yerine projenin parçalara bölünmesiydi. Arka plan, fizik motoru, düşmanlar, hitbox ve UI (skor) gibi her bir bileşen adım adım, üzerine inşa edilerek (iteratif şekilde) talep edildi.
+                </li>
+                <li style="margin-bottom: 15px;">
+                    <strong>2. Çoklu Ortam (Multimodal) Kullanımı:</strong> 
+                    Hata ayıklama (Debugging) sürecinde sadece metinle yetinilmedi. <em>"Sence niye çalışmıyor?"</em> sorusu sorulurken yanına mutlaka ekran görüntüleri ve ekran kayıtları (video) eklendi. Bu sayede AI'ın halüsinasyon görmesi engellendi ve sorunlar saniyeler içinde çözüldü. (Örn: Desmos'un karakter sınırına takılması veya modülo döngüsünün kuşa ulaşmadan sıfırlanması).
+                </li>
+                <li style="margin-bottom: 15px;">
+                    <strong>3. Net Kısıtlamalar ve Yönlendirmeler:</strong> 
+                    <em>"Bir borudaki alt üst arasını biraz daha açalım"</em> veya <em>"Tıklamak istemiyorum, Space tuşuna basınca olsun"</em> gibi doğrudan, oyun hissiyatına (game feel) yönelik net feedbackler verildi. Çıktılar hiçbir zaman olduğu gibi kabul edilmedi; estetik ve oynanış standartlarına göre sürekli optimize edildi.
+                </li>
+            </ul>
+            <p style="text-align: center; font-style: italic; color: var(--dark-green); font-weight: bold; margin-top: 25px;">
+                Sonuç: Yapay zeka sadece kod yazan bir araç olarak değil, vizyonu gerçeğe dönüştüren bir "çalışma arkadaşı" olarak mükemmel bir şekilde yönetildi!
+            </p>
+        </div>
+    </section>
+
+    <a href="https://youtu.be/dQw4w9WgXcQ?si=TRFC8uF7n90Y54Jy" target="_blank" class="rickroll-link">TEŞEKKÜRLER!</a>
+
+        </section>
+
+    <footer>
+        <div class="container">
+            <p class="easter-egg">fikret hocama selamlar :)</p>
+        </div>
+    </footer>
+
+</body>
+</html>
